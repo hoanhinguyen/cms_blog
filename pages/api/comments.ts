@@ -6,7 +6,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 * will be treated as an API endpoint instead of a page.         *
 *************************************************************** */
 
-import { GraphQLClient, gql } from 'graphql-request'
+import { GraphQLClient, gql } from 'graphql-request';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 const graphcmsToken = process.env.GRAPHCMS_TOKEN;
@@ -23,12 +23,12 @@ export default async function comments(
   // const {name, email, slug, comment} = req.body;
 
   // THIS is how we authorize grapcms client
-  const  graphQLClient = new GraphQLClient((graphqlAPI), {
+  const graphQLClient = new GraphQLClient((graphqlAPI!), {
     headers: {
-      authorization: `Bearer ${graphcmsToken}`
-    }
-  })
-  
+      authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
+    },
+  });
+
   // mutation is used to add new data or update the data
   const query = gql`
     mutation CreateComment($name: String!, $email: String!, $comment: String!, $slug: String!) {
