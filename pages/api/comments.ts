@@ -23,7 +23,7 @@ export default async function comments(
   // const {name, email, slug, comment} = req.body;
 
   // THIS is how we authorize grapcms client
-  const  graphQLClient = new GraphQLClient(graphqlAPI, {
+  const  graphQLClient = new GraphQLClient((graphqlAPI), {
     headers: {
       authorization: `Bearer ${graphcmsToken}`
     }
