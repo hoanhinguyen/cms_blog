@@ -13,9 +13,14 @@ import { Key } from 'react'
 // NextPage is the type of the return
 // fetch data from props for the posts
 const Home: NextPage = (props) => {
-  // console.log();
+  let content = {} as any;
+  content = props;
+  // console.log(props.posts);
+  // let posts = props['posts']
+  // let posts = [];
+  // for (const val in props)
   return (
-    <>
+    // <>
     <div className="container mx-auto px-10 mb-8">
 
       <Head>
@@ -25,19 +30,19 @@ const Home: NextPage = (props) => {
       <FeaturedPosts />
       <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
           <div className='lg:col-span-8 col-span-1'>
-            {props.posts.map( (post: { node: any }, index: Key | null | undefined) => <PostCard  post = {post.node} key={index} /> )}
+            {content.posts.map( (post: { node: any }, index: Key | null | undefined) => <PostCard  post = {post.node} key={index} /> )}
           </div>
 
           <div className='lg:col-span-4 col-span-1'>
               <div className='lg:sticky relative top-8'>
-                <PostWidget categories={props.posts.categories} slug={undefined} />
+                <PostWidget categories={content.posts.categories} slug={undefined} />
                 <Categories />
               </div>
           </div>
       </div>
   
     </div>
-    </>
+    // </>
   )
 }
 
@@ -45,7 +50,7 @@ const Home: NextPage = (props) => {
 export async function getStaticProps() {
   const posts = (await getPosts()) || [];
   return {
-    props: { posts },
+    props: {posts} ,
   };
 }
 
