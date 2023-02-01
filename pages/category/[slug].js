@@ -48,3 +48,20 @@ export async function getStaticPaths() {
     fallback: true,
   };
 }
+
+// export async function getServerSideProps(req) {
+//   const { criteria, page } = req.query;
+//   const { slug } = req.params || { term: '' };
+//   try {
+//     const data = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/search/${slug}?criteria=${criteria || 'name'}&page=${page}`);
+//     const searchRes = await data.json();
+//     return {
+//       props: {
+//         results: searchRes.data,
+//         currentSearch: searchRes.query
+//       }
+//     }
+//   } catch (e) {
+//     console.log(e)
+//   }
+// }
