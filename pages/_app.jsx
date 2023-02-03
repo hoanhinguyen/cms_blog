@@ -5,7 +5,7 @@ import 'tailwindcss/tailwind.css';
 
 import '../styles/globals.scss'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return (
     <Layout>
        {/* the component will have a header above it */}
