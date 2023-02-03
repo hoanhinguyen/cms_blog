@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import {PostCard, Categories, PostWidget} from '../components'
@@ -12,8 +11,8 @@ import { Key } from 'react'
 
 // NextPage is the type of the return
 // fetch data from props for the posts
-const Home: NextPage = (props) => {
-  let content = {} as any;
+const Home = (props) => {
+  // let content = {} as any;
   content = props;
   // console.log(props.posts);
   // let posts = props['posts']
@@ -30,7 +29,7 @@ const Home: NextPage = (props) => {
       <FeaturedPosts />
       <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
           <div className='lg:col-span-8 col-span-1'>
-            {content.posts.map( (post: { node: any }, index: Key | null | undefined) => <PostCard  post = {post.node} key={index} /> )}
+            {content.posts.map( (post, index) => <PostCard  post = {post.node} key={index} /> )}
           </div>
 
           <div className='lg:col-span-4 col-span-1'>
