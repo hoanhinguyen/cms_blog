@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import {server} from '../../config'
 
 import { PostDetail, Categories, PostWidget, Author, Comments, CommentsForm, Loader } from '../../components';
 import { getPosts, getPostDetails } from '../../services';
@@ -37,7 +38,7 @@ export default PostDetails;
 
 // Fetch data at build time
 export async function getStaticProps({ params }) {
-  const data = await getPostDetails(params.slug);
+  const data = await getPostDetails(`${server}/post/params.slug`);
   return {
     props: {
       post: data,
