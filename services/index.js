@@ -8,36 +8,36 @@ export const getPosts = async () => {
 
     // '$'slug and '$'categories are used to select the current key, then specify the accepted data type
 // slug_not: '$'slug,  AND '{c'atefories_some:' {'slug_in: $categories: don't display the current content but display some of the categories that we want to get
-const query = gql`
-query MyQuery {
-  postsConnection {
-    edges {
-      cursor
-      node {
-        author {
-          bio
-          name
-          id
-          photo {
-            url
+    const query = gql`
+    query Asset {
+      postsConnection {
+        edges {
+          cursor
+          node {
+            author {
+              bio
+              name
+              id
+              photo {
+                url
+              }
+            }
+            createdAt
+            slug
+            title
+            excerpt
+            featuredImage {
+              url
+            }
+            categories {
+              name
+              slug
+            }
           }
-        }
-        createdAt
-        slug
-        title
-        excerpt
-        featuredImage {
-          url
-        }
-        categories {
-          name
-          slug
         }
       }
     }
-  }
-}
-`;
+    `;
 
 const result = await request(graphqlAPI, query);
 
