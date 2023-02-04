@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import {server} from '../../config'
+import {server} from '../../config/index'
 
 
 import { getCategories, getCategoryPost } from '../../services';
