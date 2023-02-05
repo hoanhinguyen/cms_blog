@@ -1,7 +1,8 @@
 import { graphql, graphqlSync } from 'graphql';
-import {request, gql} from 'graphql-request';
+import {GraphQLClient, gql} from 'graphql-request';
+import {api_endpoint} from '../constants/index'
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+const graphqlAPI = new GraphQLClient(api_endpoint);
 
 export const getPosts = async () => {
     // starting fetching our posts
@@ -39,7 +40,7 @@ export const getPosts = async () => {
     }
     `;
 
-const result = await request(graphqlAPI, query);
+const result = await graphqlAPI.request(query);
 
 return result.postsConnection.edges;
 };
@@ -75,9 +76,10 @@ export const getPostDetails = async (slug) => {
             }
         }
     `
-    const results = await request(graphqlAPI, query, {slug});
+    const result = await graphqlAPI.request(query, {slug});
+    // const results = await request(graphqlAPI, query, {slug});
 
-    return results.post;
+    return result.post;
 }
 
 export const getRecentPosts = async () => {
@@ -97,9 +99,10 @@ export const getRecentPosts = async () => {
         }
     `
 
-    const results = await request(graphqlAPI, query);
+    // const results = await request(graphqlAPI, query);
+    const result = await graphqlAPI.request(query);
 
-    return results.posts;
+    return result.posts;
 }
 
 
@@ -119,9 +122,10 @@ export const getSimilarPosts = async (categories, slug) => {
             }
         } 
     `
-    const results = await request(graphqlAPI, query, {categories, slug});
+    // const results = await request(graphqlAPI, query, {categories, slug});
+    const result = await graphqlAPI.request(query, {categories, slug});
 
-    return results.posts;
+    return result.posts;
 }
 
 export const getCategories = async () => {
@@ -134,7 +138,8 @@ export const getCategories = async () => {
       }
     `;
   
-    const result = await request(graphqlAPI, query);
+    // const result = await request(graphqlAPI, query);
+    const result = await graphqlAPI.request(query);
   
     return result.categories;
   };
@@ -165,7 +170,8 @@ export const getCategories = async () => {
       }
     `;
   
-    const result = await request(graphqlAPI, query, {slug});
+    // const result = await request(graphqlAPI, query, {slug});
+    const result = await graphqlAPI.request(query, slug);
   
     return result.comments;
   };
@@ -190,7 +196,8 @@ export const getCategories = async () => {
         }
     `;
 
-    const result = await request(graphqlAPI, query);
+    // const result = await request(graphqlAPI, query);
+    const result = await graphqlAPI.request(query);
 
     return result.posts
   }
@@ -226,7 +233,8 @@ export const getCategories = async () => {
         }
       }
     `;
-    const result = await request(graphqlAPI, query, { slug });
+    // const result = await request(graphqlAPI, query, { slug });
+    const result = await graphqlAPI.request(query, { slug });
 
     return result.postsConnection.edges;
   };

@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-
+import {api_endpoint} from '../../constants/index'
 /** *************************************************************
 * Any file inside the folder pages/api is mapped to /api/* and  *
 * will be treated as an API endpoint instead of a page.         *
@@ -8,7 +8,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 import { GraphQLClient, gql } from 'graphql-request';
 
-const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
+// const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 const graphcmsToken = process.env.GRAPHCMS_TOKEN;
 
 type Data = {
@@ -23,7 +23,7 @@ export default async function comments(
   // const {name, email, slug, comment} = req.body;
 
   // THIS is how we authorize grapcms client
-  const graphQLClient = new GraphQLClient((graphqlAPI!), {
+  const graphQLClient = new GraphQLClient((api_endpoint), {
     headers: {
       authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
     },
@@ -36,7 +36,7 @@ export default async function comments(
     }
   `;
 
-      try {
+      // try {
         const result = await graphQLClient.request(query, {
           name: req.body.name,
           email: req.body.email,
@@ -46,10 +46,10 @@ export default async function comments(
       
         return res.status(200).send(result);
         
-      } catch (error) {
-        console.log(error);
-        // return res.status(500).send(error); 
-      }
+      // } catch (error) {
+      //   console.log(error);
+      //   // return res.status(500).send(error); 
+      // }
 
 
 }
