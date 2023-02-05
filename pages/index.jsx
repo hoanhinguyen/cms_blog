@@ -13,7 +13,7 @@ import {FeaturedPosts} from '../Section'
 // fetch data from props for the posts
 const Home = (props) => {
   // let content = {} as any;
-  content = props;
+  let content = props;
   // console.log(props.posts);
   // let posts = props['posts']
   // let posts = [];
